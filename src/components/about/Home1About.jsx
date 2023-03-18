@@ -54,7 +54,7 @@ function Home1About() {
             <div className="story-img">
               <img
                 className="img-fluid"
-                src="assets/images/bg/story-img1.png"
+                src="https://scooby-nextjs.vercel.app/assets/images/bg/story-img1.png"
                 alt=""
               />
             </div>

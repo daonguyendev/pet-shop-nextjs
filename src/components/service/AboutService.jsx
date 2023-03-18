@@ -13,7 +13,7 @@ function AboutService() {
                 </div>
                 <img
                   className="img-fluid"
-                  src="assets/images/bg/h2-services-img.png"
+                  src="https://scooby-nextjs.vercel.app/assets/images/bg/h2-services-img.png"
                   alt=""
                 />
               </div>

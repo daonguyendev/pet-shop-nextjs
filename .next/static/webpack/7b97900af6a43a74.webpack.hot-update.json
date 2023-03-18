@@ -1,0 +1,1 @@
+{"c":["webpack"],"r":["pages/shop"],"m":["./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?absolutePagePath=D%3A%5Ccodegym%5Chackathon%5Cpet-shop-nextjs%5Csrc%5Cpages%5Cshop.js&page=%2Fshop!","./src/components/shop/ShopCard.jsx","./src/data/petCollection.json","./src/pages/shop.js"]}
