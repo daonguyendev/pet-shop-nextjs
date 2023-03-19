@@ -1,10 +1,27 @@
+import axios from "axios";
 import Link from "next/link";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Breadcrumb from "../components/breadcrumb/Breadcrumb";
 import ItemCounter from "../components/shop/ProductCount";
 import Layout from "../layout/Layout";
 
 function CartPage() {
+  const [cartItems, setCartItems] = useState([]);
+
+  useEffect(() => {
+    if (cartItems.length != null) {
+      axios
+        .get(`http://localhost:8080/api/products`)
+        .then(res => {
+          setCartItems(res.data);
+          console.log(res.data);
+        })
+        .catch(err => {
+          throw err;
+        });
+    }
+  }, []);
+
   return (
     <Layout>
       <Breadcrumb pageName="Cart" pageTitle="Cart" />
@@ -20,91 +37,50 @@ function CartPage() {
                       <th>Image</th>
                       <th>Food Name</th>
                       <th>Unite Price</th>
-                      <th>Discount Price</th>
+                      <th>Discount Amount</th>
                       <th>Quantity</th>
-                      <th>Subtotal</th>
+                      <th>Sub Total</th>
                     </tr>
                   </thead>
-                  <tbody>
-                    <tr>
-                      <td data-label="Delete">
-                        <div className="delete-icon">
-                          <i className="bi bi-x" />
-                        </div>
-                      </td>
-                      <td data-label="Image">
-                        <img src="https://scooby-nextjs.vercel.app/assets/images/bg/cart-01.png" alt="" />
-                      </td>
-                      <td data-label="Food Name">
-                        <Link legacyBehavior href="/shop-details">
-                          <a>Whiskas Cat Food Core Tuna</a>
-                        </Link>
-                      </td>
-                      <td data-label="Unite Price">
-                        <del>$30.00</del>
-                      </td>
-                      <td data-label="Discount Price">$25.00</td>
-                      <td data-label="Quantity">
-                        <div className="quantity d-flex align-items-center">
-                          <div className="quantity-nav nice-number d-flex align-items-center">
-                            <ItemCounter />
+                  <tbody id="cartItems">
+                    {cartItems.map(cartItem => (
+                      <tr key={cartItem.id}>                        
+                        <td data-label="Delete">
+                          <div className="delete-icon">
+                            <i className="bi bi-x" />
                           </div>
-                        </div>
-                      </td>
-                      <td data-label="Subtotal">$25.006</td>
-                    </tr>
-                    <tr>
-                      <td data-label="Delete">
-                        <div className="delete-icon">
-                          <i className="bi bi-x" />
-                        </div>
-                      </td>
-                      <td data-label="Image">
-                        <img src="https://scooby-nextjs.vercel.app/assets/images/bg/cart-02.png" alt="" />
-                      </td>
-                      <td data-label="Food Name">
-                        <Link legacyBehavior href="/shop-details">
-                          <a>Friskies Kitten Discoveries.</a>
-                        </Link>
-                      </td>
-                      <td data-label="Unite Price">
-                        <del>$49.00</del>
-                      </td>
-                      <td data-label="Discount Price">$39.00</td>
-                      <td data-label="Quantity">
-                        <div className="quantity d-flex align-items-center">
-                          <div className="quantity-nav nice-number d-flex align-items-center">
-                            <ItemCounter />
+                        </td>
+                        <td data-label="Image">
+                          <img src={cartItem.image} alt="" />
+                        </td>
+                        <td data-label="Food Name">
+                          <Link legacyBehavior href={`/shop-details`}>
+                            {cartItem.name}
+                          </Link>
+                        </td>
+                        <td data-label="Unite Price">
+                          <del>${(Number(cartItem.unitPrice)).toFixed(2)}</del>
+                        </td>
+                        <td data-label="Discount Amount">${(Number(cartItem.discount)).toFixed(2)}</td>
+                        <td data-label="Quantity">
+                          <div className="quantity d-flex align-items-center">
+                            <div className="quantity-nav nice-number d-flex align-items-center">
+                            <button type="button">
+                                <i className="bi bi-dash"></i>
+                              </button>
+                              <span style={{ margin: "0 20px", fontFamily: "Cabin" }}>
+                                {cartItem.quantity}
+                              </span>
+                              <button type="button">
+                                <i className="bi bi-plus"></i>
+                              </button>
+                            </div>
                           </div>
-                        </div>
-                      </td>
-                      <td data-label="Subtotal">$39.00</td>
-                    </tr>
-                    <tr>
-                      <td data-label="Delete">
-                        <div className="delete-icon">
-                          <i className="bi bi-x" />
-                        </div>
-                      </td>
-                      <td data-label="Image">
-                        <img src="https://scooby-nextjs.vercel.app/assets/images/bg/cart-03.png" alt="" />
-                      </td>
-                      <td data-label="Food Name">
-                        <Link legacyBehavior href="/shop-details">
-                          <a>Natural Dog Fresh Food.</a>
-                        </Link>
-                      </td>
-                      <td data-label="Unite Price">$30.00</td>
-                      <td data-label="Discount Price">$18.00</td>
-                      <td data-label="Quantity">
-                        <div className="quantity d-flex align-items-center">
-                          <div className="quantity-nav nice-number d-flex align-items-center">
-                            <ItemCounter />
-                          </div>
-                        </div>
-                      </td>
-                      <td data-label="Subtotal">$18.00</td>
-                    </tr>
+                        </td>
+                        <td data-label="Subtotal" id={cartItem.id}>${(Number(cartItem.subtotal)).toFixed(2)}</td>
+                      </tr>
+                    ))}
+
                   </tbody>
                 </table>
               </div>
@@ -128,7 +104,7 @@ function CartPage() {
                   <tr>
                     <th>Cart Totals</th>
                     <th />
-                    <th>$128.70</th>
+                    <th id="cartTotals">$128.70</th>
                   </tr>
                 </thead>
                 <tbody>

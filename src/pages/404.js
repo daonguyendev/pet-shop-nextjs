@@ -17,7 +17,7 @@ function errorPage() {
                 <div className="error-img">
                   <img
                     className="img-fluid"
-                    src="assets/images/bg/error-img.png"
+                    src="https://scooby-nextjs.vercel.app/assets/images/bg/error-img.png"
                     alt=""
                   />
                 </div>

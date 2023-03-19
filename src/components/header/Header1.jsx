@@ -106,7 +106,7 @@ function Header1() {
                 <img
                   alt="image"
                   className="img-fluid"
-                  src="assets/images/header1-logo.svg"
+                  src="https://homi-seeds.s3.us-east-2.amazonaws.com/logo2.png"
                 />
               </a>
             </Link>

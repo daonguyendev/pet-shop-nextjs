@@ -2,7 +2,7 @@ import Link from "next/link";
 import React from "react";
 import ProductPriceCount from "./ProductPriceCount";
 
-function ProductDetails() {
+function ProductDetails({props}) {
   return (
     <>
       <div className="row g-lg-4 gy-5 mb-120">
@@ -139,7 +139,7 @@ function ProductDetails() {
         </div>
         <div className="col-lg-5">
           <div className="shop-details-content">
-            <h3>To Make Delicious Food Item.</h3>
+            <h3>{props.name}</h3>
             <ul className="shopuct-review2 d-flex flex-row align-items-center mb-25">
               <li>
                 <i className="bi bi-star-fill" />
@@ -167,7 +167,7 @@ function ProductDetails() {
             </div>
             <div className="price-tag">
               <h4>
-                $50.00 <del>$80.00</del>
+               ${props.subtotal} <del>${props.unitPrice}</del>
               </h4>
             </div>
             <p>

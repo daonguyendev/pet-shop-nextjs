@@ -7,8 +7,10 @@ import Layout from "../layout/Layout";
 import "react-datepicker/dist/react-datepicker.css";
 import OtherServiceSlide from "../components/service/OtherServiceSlide";
 import ItemCounter from "../components/shop/ProductCount";
+
 function ServiceDetails() {
   const [startDate, setStartDate] = useState(new Date());
+
   return (
     <Layout>
       <Breadcrumb pageName="Service Details" pageTitle="Service Details" />

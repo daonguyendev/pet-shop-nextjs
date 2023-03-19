@@ -1,6 +1,6 @@
 import React from "react";
 
-function SingleProductDescription() {
+function SingleProductDescription({props}) {
   return (
     <>
       <div className="row mb-120">

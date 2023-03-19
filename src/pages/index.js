@@ -1,6 +1,4 @@
-// import Home1About from "../components/about/Home1About";
 import Banner1 from "../components/banner/Banner1";
-// import Home1Blog from "../components/blog/Home1Blog";
 import ChooseUs from "../components/chooseUs/ChooseUs";
 import FeatureCounter from "../components/feature/FeatureCounter";
 import Home1feature from "../components/feature/Home1feature";
@@ -22,16 +20,14 @@ export default function Home() {
       <Banner1 />
       <VideoBanner1 />
       <Home1Service />
-      {/* <Home1About /> */}
       <Home1feature />
       <FeatureCounter />
       <ChooseUs />
       <Home1Partner />
       <Home1PricePlan />
       <Home1Testimonial />
-      <Home1Team />
+      {/* <Home1Team /> */}
       <Home1Newslatter />
-      {/* <Home1Blog /> */}
       <Home1Gallary />
       <Footer1 />
     </>
